@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from app.api import rotas_lugares
+from app.api import rotas_avisos, rotas_lugares, rotas_plano, rotas_relatos
 from app.aplicacao.lugares import LugarNaoEncontrado
 from app.dominio.erros import RegraViolada
 
@@ -12,6 +12,9 @@ app = FastAPI(
 )
 
 app.include_router(rotas_lugares.router)
+app.include_router(rotas_avisos.router)
+app.include_router(rotas_relatos.router)
+app.include_router(rotas_plano.router)
 
 
 @app.exception_handler(LugarNaoEncontrado)

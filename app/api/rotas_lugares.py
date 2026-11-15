@@ -1,15 +1,12 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from app.api.esquemas import Erro, LugarIn, LugarOut
+from app.api.esquemas import NAO_ENCONTRADO, REGRA_VIOLADA, LugarIn, LugarOut
 from app.aplicacao import lugares
 from app.dominio.lugar import Lugar, TipoDeLugar
 from app.infraestrutura.db import get_session
 
 router = APIRouter(prefix="/lugares", tags=["Lugares"])
-
-NAO_ENCONTRADO = {404: {"model": Erro, "description": "Lugar não encontrado"}}
-REGRA_VIOLADA = {422: {"description": "Dados inválidos ou regra do domínio violada"}}
 
 
 def _para_dominio(dados: LugarIn) -> Lugar:
