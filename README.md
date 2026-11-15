@@ -6,6 +6,25 @@ Uma API REST que responde, antes de sair de casa, a pergunta que pessoas com def
 
 ---
 
+## Sumário
+
+1. [Integrantes](#integrantes)
+2. [Ficha da CitizenTech](#ficha-da-citizentech)
+3. [Tecnologias](#tecnologias)
+4. [Arquitetura](#arquitetura)
+5. [Modelo de dados](#modelo-de-dados)
+6. [Regras de negócio](#regras-de-negócio)
+7. [Endpoints](#endpoints)
+8. [Como executar](#como-executar)
+9. [Migrações](#migrações)
+10. [Documentação da API](#documentação-da-api)
+11. [Testes](#testes)
+12. [De onde vêm os dados](#de-onde-vêm-os-dados)
+13. [Decisões de projeto](#decisões-de-projeto)
+14. [Evidências](#evidências)
+
+---
+
 ## Integrantes
 
 **Turma:** 3ESPX
@@ -38,24 +57,6 @@ Uma API REST que responde, antes de sair de casa, a pergunta que pessoas com def
 - **ODS 3 · Saúde e bem-estar.** Antes de uma consulta ou terapia, a família consulta o plano do lugar e descobre o melhor turno e os avisos ativos. Isso reduz idas perdidas e situações de sobrecarga numa sala de espera barulhenta.
 - **ODS 10 · Redução das desigualdades.** A API reúne, num serviço aberto, uma informação que hoje fica espalhada em grupos de mensagens: relatos anônimos de quem tem a mesma necessidade (barulho, cadeira de rodas, mobilidade reduzida), sem exigir diagnóstico nem dado pessoal.
 - **ODS 11 · Cidades e comunidades sustentáveis.** Cada aviso de recurso parado fica registrado com início e validade, e cada relato "não deu" fica guardado. Esse histórico é a base para mostrar à Prefeitura quanto tempo um problema de acessibilidade ficou sem solução.
-
----
-
-## Sumário
-
-1. [Tecnologias](#tecnologias)
-2. [Arquitetura](#arquitetura)
-3. [Modelo de dados](#modelo-de-dados)
-4. [Regras de negócio](#regras-de-negócio)
-5. [Endpoints](#endpoints)
-6. [Como executar](#como-executar)
-7. [Migrações](#migrações)
-8. [Documentação da API](#documentação-da-api)
-9. [Testes](#testes)
-10. [De onde vêm os dados](#de-onde-vêm-os-dados)
-11. [Decisões de projeto](#decisões-de-projeto)
-12. [Evidências](#evidências)
-13. [Integrantes](#integrantes)
 
 ---
 
@@ -313,7 +314,7 @@ A documentação é gerada automaticamente a partir do código, com a API rodand
 
 Todos os endpoints têm resumo, estão agrupados por tag (**Lugares, Avisos, Relatos, Plano**), trazem exemplos de entrada e saída e documentam os erros 404 e 422.
 
-![Swagger da API](docs/evidencias/02-swagger.png)
+O print da documentação está em [Evidências](#evidências).
 
 ---
 
@@ -330,7 +331,7 @@ São **19 testes**:
 
 Os testes da API usam um banco **SQLite em memória**, criado do zero a cada teste. Por isso eles não precisam do Docker e não mexem no banco de verdade, que continua vindo das migrações.
 
-![Testes passando](docs/evidencias/04-testes.png)
+O print da saída dos testes está em [Evidências](#evidências).
 
 ---
 
@@ -354,11 +355,20 @@ Os relatos são anônimos por padrão: a API não guarda nome, contato ou qualqu
 
 ## Evidências
 
-| Evidência | Print |
-|---|---|
-| Migrações aplicadas do zero | ![Migrações](docs/evidencias/01-migracoes.png) |
-| Documentação Swagger | ![Swagger](docs/evidencias/02-swagger.png) |
-| API respondendo o plano | ![Plano](docs/evidencias/03-plano.png) |
-| Testes passando | ![Testes](docs/evidencias/04-testes.png) |
+### 1. Migrações aplicadas do zero
 
----
+![Migrações aplicadas do zero](docs/evidencias/01-migracoes.png)
+
+### 2. Documentação Swagger
+
+![Documentação Swagger com os quatro grupos de endpoints](docs/evidencias/02-swagger.png)
+
+### 3. API respondendo o plano "dá pra ir?"
+
+`GET /lugares/2/plano?necessidade=CADEIRA_DE_RODAS` respondendo `MELHOR_NAO_IR`, com o aviso do elevador.
+
+![Plano respondendo pelo Swagger](docs/evidencias/03-plano.png)
+
+### 4. Testes passando
+
+![19 testes passando](docs/evidencias/04-testes.png)
